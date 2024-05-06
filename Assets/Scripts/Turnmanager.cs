@@ -14,18 +14,28 @@ public class Turnmanager : MonoBehaviour
     float yInput = 0;
     float stepsTaken = 0;
 
+    float turnPauser;
+    public float pauseBy = 5;
+
     void Start()
     {
-        
+        turnPauser = pauseBy;
     }
 
     // Update is called once per frame
     void Update()
     {
-        xInput = Input.GetAxisRaw("Horizontal");
-        yInput = Input.GetAxisRaw("Vertical");
-        if (isPlayerTurn) movePlayer();
-        else moveEnemies();
+        if(turnPauser <= 0)
+        {
+            xInput = Input.GetAxisRaw("Horizontal");
+            yInput = Input.GetAxisRaw("Vertical");
+            if (isPlayerTurn) movePlayer();
+            else moveEnemies();
+        }
+        else
+        {
+            turnPauser -= Time.deltaTime;
+        }
     }
 
     void movePlayer()
@@ -34,12 +44,11 @@ public class Turnmanager : MonoBehaviour
         {
             player.moveOneTile(new Vector3(xInput, yInput));
             stepsTaken++;
-            Debug.Log(stepsTaken);
-            isPlayerTurn = false;
+            turnPauser = pauseBy;
         }
     }
     void moveEnemies()
     {
-
+        turnPauser = pauseBy;
     }
 }
