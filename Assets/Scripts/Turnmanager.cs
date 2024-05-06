@@ -34,6 +34,8 @@ public class Turnmanager : MonoBehaviour
         {
             player.moveOneTile(new Vector3(xInput, yInput));
             stepsTaken++;
+            Debug.Log(stepsTaken);
+            isPlayerTurn = false;
         }
     }
     void moveEnemies()

@@ -10,6 +10,7 @@ public class Movement : MonoBehaviour
 
     public void moveOneTile(Vector3 direction)
     {
+        Debug.Log(direction.normalized);
         if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
         {
             direction.y = 0;
@@ -20,7 +21,9 @@ public class Movement : MonoBehaviour
         }
 
         Vector3 nextPos = objectPosition.position + direction.normalized * speed;
-        objectPosition.position = Vector3.MoveTowards(objectPosition.position, nextPos, speed * Time.deltaTime);
+        objectPosition.position = Vector3.MoveTowards(objectPosition.position, nextPos, 100000000000000f);
     }
+
+
 }
 
