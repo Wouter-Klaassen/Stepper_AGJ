@@ -12,7 +12,7 @@ public class Turnmanager : MonoBehaviour
 
     float xInput = 0;
     float yInput = 0;
-    float stepsTaken = 0;
+    public static float stepsTaken = 0;
 
     float turnPauser;
     public float pauseBy = 5;
